@@ -1,0 +1,97 @@
+/*
+Ben Cullen: This is the CSS file for the website. It is used to style the website.
+*/
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 35px;
+    color: #000000;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    transition: all 0.3s ease-out;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+/* Make slightly bigger on hover */
+
+input[type=submit]:hover {
+    
+    background-color: #45a049;
+    transform: scale(1.1);
+}
+
+form > input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+input[type="text"]::placeholder {
+    color: #000000;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th,
+  td {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    color: #000000;
+    border: 1px solid #cccccc;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+
+  .table-container {
+    width: 100%;
+    max-height: 500px; /* Adjust the height according to your preference */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+
+
+/* 
+normal: This is the default value, which does not insert any additional content.
+none: This value prevents any content from being displayed.
+<content-replacement>: This value allows you to replace the content with a specific element or a set of elements. Examples include an image, a quote, or other content.
+<content-list>: This value allows you to create a list of content items, which can include strings, images, counters, or other content elements.
+[<string> | <counter>]+: This optional part, which comes after a /, lets you add one or more strings or counters to the content.
+The question mark (?) at the end indicates that the part following the slash is optional. In other words, you can choose to include it or not.
+
+In summary, the content property allows you to set the content to its default state (normal), prevent content from being displayed (none), or define a custom content replacement or list. Additionally, you can optionally include a series of strings or counters as part of the content. 
+*/

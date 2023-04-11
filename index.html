@@ -1,19 +1,24 @@
+<!-- Ben Cullen: This is the HTML file for my website -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    
     <title>Music Search</title>
 </head>
 <body>
     <h1>Find albums by your favourite artist</h1>
 
-    <form action="get" method="get">
-        <label for="artist">Artist</label>
-        <input type="text" name="artist" id="artist">
-        <input type="submit" value="Search">
+    <form id="searchForm">
+        <label for="artist"></label>
+        <input type="text" name="artist" id="artist" placeholder="Enter Artist Name Here...">
+        <input type="submit" value="Search" id="searchButton">
     </form>
-
+    <div id="albums"></div>
+    <script src="script.js"></script>
 </body>
 </html>
