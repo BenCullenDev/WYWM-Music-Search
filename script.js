@@ -41,32 +41,49 @@ async function fetchArtistData(artistName) {
   const data = await fetchWithRetry(apiUrl);
   console.log(data);
 
-  // Extract the artist ID from the response
-  const artistId = data.artists[0].id;
+  if (data.artists && data.artists.length > 0) {
+    // Extract the artist ID from the response
+    const artistId = data.artists[0].id;
 
-  // Fetch all the release groups using the artist ID
-  const allReleaseGroups = await fetchAllReleaseGroups(artistId);
-  const releaseGroups = allReleaseGroups.filter((releaseGroup) => {
-    const primaryType = releaseGroup['primary-type'];
-    const secondaryTypes = releaseGroup['secondary-types'] || [];
-    return primaryType === 'Album' && secondaryTypes.length === 0;
-  });
+    // Fetch all the release groups using the artist ID
+    const allReleaseGroups = await fetchAllReleaseGroups(artistId);
+    const releaseGroups = allReleaseGroups.filter((releaseGroup) => {
+      const primaryType = releaseGroup['primary-type'];
+      const secondaryTypes = releaseGroup['secondary-types'] || [];
+      return primaryType === 'Album' && secondaryTypes.length === 0;
+    });
 
-  // Sort release groups by release date
-  const sortedReleaseGroups = releaseGroups.sort((a, b) => {
-    return new Date(a['first-release-date']) - new Date(b['first-release-date']);
-  });
+    // Sort release groups by release date
+    const sortedReleaseGroups = releaseGroups.sort((a, b) => {
+      return new Date(a['first-release-date']) - new Date(b['first-release-date']);
+    });
 
-  // Extract the album names from the sorted release groups
-  const albumNames = sortedReleaseGroups.map((releaseGroup) => {
-    return {
-      title: releaseGroup.title,
-      year: releaseGroup['first-release-date'].substring(0, 4),
-    };
-  });
+    // Extract the album names from the sorted release groups
+    const albumNames = sortedReleaseGroups.map((releaseGroup) => {
+      return {
+        title: releaseGroup.title,
+        year: releaseGroup['first-release-date'].substring(0, 4),
+      };
+    });
 
-  // Display the album names
-  displayAlbumNames(albumNames);
+    // Display the album names
+    displayAlbumNames(albumNames);
+  } else {
+    displayNotFoundMessage();
+  }
+}
+
+function displayNotFoundMessage() {
+  const message = document.createElement("p");
+  message.textContent = "Artist not found. Please try again.";
+  message.style.color = "red";
+
+  // Clear the previous album list or message if it exists
+  const albumsDiv = document.getElementById("albums");
+  albumsDiv.innerHTML = "";
+
+  // Append the not found message
+  albumsDiv.appendChild(message);
 }
 
 
